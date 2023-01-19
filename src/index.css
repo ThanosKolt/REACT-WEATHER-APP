@@ -1,13 +1,196 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-family: var(--ff);
+  background-color: var(--fc-light-blue);
+}
+/* Variables */
+:root {
+  --ff: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --fs-h1: 3rem;
+  --fs-h2: 2.5rem;
+  --fs-h3: 2rem;
+  --fs-h4:1.5rem;
+  --fs-body: 1.15rem;
+  --fc-light: #ffff;
+  --fc-dark: #4C8CBD;
+  --fc-blue: #488286;
+  --fc-light-blue: #F0F6FA;
+  --fc-grey: #2F4858;
+  --fc-yellow: #FBDA9D;
+}
+/* Typography */
+h1,h2,h3,h4 {
+  line-height: 1.25;
+}
+
+h1{ font-size: var(--fs-h1)}
+h2{ font-size: var(--fs-h2)}
+h3{ font-size: var(--fs-h3)}
+h4{ font-size: var(--fs-h4)}
+p{line-height: 1.5;
+  font-size: var(--fs-body);}
+
+/* Page Container */
+.page-container {
+  height: 100vh;
+}
+/* Sidebar */
+.sidebar {
+  background-color: var(--fc-dark);
+  width: 20vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 3;
+  transition: all ease-in-out 0.1s;
+}
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 1rem;
+}
+.toggle-btn {
+  background:none;
+  border: none;
+  color: var(--fc-light);
+  font-size: var(--fs-h4);
+  transition: 0.2s ease-in-out;
+}
+.toggle-btn:hover{
+  cursor: pointer;
+  color: var(--fc-yellow);
+}
+.home-btn {
+  color: var(--fc-light);
+  text-decoration: none;
+  font-size: var(--fs-h4);
+  transition: ease-in-out 0.2s;
+}
+.home-btn:hover{
+  color: var(--fc-yellow);
+}
+input{
+  margin: 1rem;
+  font-size: var(--fs-h4);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+label {
+  margin: 0 1rem;
+  font-size: var(--fs-h4);
+}
+.form {
+  color: var(--fc-light);
+  display: flex;
+  flex-direction: column;
+  
+}
+.form button {
+  padding: 0.5rem;
+  font-size: var(--fs-h4);
+  margin: 0 1rem;
+  background: var(--fc-light);
+  border: none;
+  border-radius: 1rem;
+  color: var(--fc-dark);
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+}
+
+.form button:hover {
+  background-color: #F6AE2D;
+  color: var(--fc-light);
+}
+.hide {
+  display: none;
+}
+
+/* Result Page */
+.result-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.city-btn {
+  text-decoration: none;
+  margin: 1em;
+  font-size: var(--fs-h4);
+  color: var(--fc-dark);
+  width: 100%;
+  text-align: center;
+  transition: ease-in-out 0.2s;
+  padding: 1em;
+}
+.city-btn:hover{
+  background-color: rgb(249, 247, 248)
+}
+
+/* error */
+.error,
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+/* home  */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ }
+
+/* city */
+.city-page{
+  display: grid;
+  justify-content: center;
+}
+
+.city-title {
+  color: var(--fc-grey);
+}
+
+/* daily weather */
+.daily-container{
+  color: var(--fc-grey);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
+}
+
+.single-day {
+  text-align: center;
+  border: 1px solid var(--fc-grey);
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.daily-icon {
+  max-height: 4em;
+}
+
+/* hourly weather */
+.hourly-container {
+  color: var(--fc-grey);
+}
+.hourly-icon {
+  width: 50px;
+}
+
+.single-hour-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
 }
