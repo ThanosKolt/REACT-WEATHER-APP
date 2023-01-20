@@ -47,7 +47,12 @@ const Searchbar = () => {
         <button className="toggle-btn" onClick={() => setIsOpen(!isOpen)}>
           <FaBars />
         </button>
-        <Link to="/" className="home-btn" ref={homeBtnRef}>
+        <Link
+          to="/"
+          className="home-btn"
+          ref={homeBtnRef}
+          onClick={() => setIsOpen(!isOpen)}
+        >
           Home
         </Link>
       </div>
