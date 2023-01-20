@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useGlobalContext } from "../context";
 import { FaBars } from "react-icons/fa";
@@ -7,7 +7,7 @@ const Searchbar = () => {
   const { fetchCity } = useGlobalContext();
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState({ city: "", country: "" });
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const handleChange = (e) => {
     if (e.target.name === "city") {
       setSearchValue({ ...searchValue, city: e.target.value });
@@ -20,26 +20,31 @@ const Searchbar = () => {
     e.preventDefault();
     fetchCity(searchValue);
     setSearchValue({ city: "", country: "" });
+    setIsOpen(false);
     navigate("/result");
   };
   const homeBtnRef = useRef();
   const formRef = useRef();
   const sidebarRef = useRef();
   const toggleSidebar = () => {
-    homeBtnRef.current.classList.toggle("hide");
-    formRef.current.classList.toggle("hide");
     if (isOpen) {
-      sidebarRef.current.style.width = "66px";
-      setIsOpen(false);
+      formRef.current.classList.remove("hide");
+      homeBtnRef.current.classList.remove("hide");
+      sidebarRef.current.classList.add("sidebar-open");
     } else {
-      sidebarRef.current.style.width = "20vw";
-      setIsOpen(true);
+      formRef.current.classList.add("hide");
+      homeBtnRef.current.classList.add("hide");
+      sidebarRef.current.classList.remove("sidebar-open");
     }
   };
+  useEffect(() => {
+    toggleSidebar();
+    console.log("effect");
+  }, [isOpen]);
   return (
     <div className="sidebar" ref={sidebarRef}>
       <div className="sidebar-header">
-        <button className="toggle-btn" onClick={toggleSidebar}>
+        <button className="toggle-btn" onClick={() => setIsOpen(!isOpen)}>
           <FaBars />
         </button>
         <Link to="/" className="home-btn" ref={homeBtnRef}>

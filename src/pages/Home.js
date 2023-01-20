@@ -1,4 +1,6 @@
 import React from "react";
+import Error from "../components/Error";
+import Loading from "../components/Loading";
 
 const Home = () => {
   return (

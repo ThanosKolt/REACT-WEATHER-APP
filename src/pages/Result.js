@@ -7,6 +7,13 @@ const Result = () => {
   const { loading, error, searchResult, selectCity } = useGlobalContext();
   if (loading) return <Loading />;
   if (error) return <Error />;
+  if (searchResult.length === 0) {
+    return (
+      <div className="result-container">
+        <h1>No results found</h1>
+      </div>
+    );
+  }
   return (
     <div className="result-container">
       {searchResult

@@ -12,11 +12,11 @@ body {
 /* Variables */
 :root {
   --ff: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  --fs-h1: 3rem;
-  --fs-h2: 2.5rem;
-  --fs-h3: 2rem;
+  --fs-h1: 4.5rem;
+  --fs-h2: 3.75rem;
+  --fs-h3: 1.5rem;
+  --fs-body: 1.125rem;
   --fs-h4:1.5rem;
-  --fs-body: 1.15rem;
   --fc-light: #ffff;
   --fc-dark: #4C8CBD;
   --fc-blue: #488286;
@@ -24,6 +24,15 @@ body {
   --fc-grey: #2F4858;
   --fc-yellow: #FBDA9D;
 }
+@media (max-width:800px){
+  :root {
+    --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+  }
+}
+
 /* Typography */
 h1,h2,h3,h4 {
   line-height: 1.25;
@@ -38,16 +47,25 @@ p{line-height: 1.5;
 
 /* Page Container */
 .page-container {
+  display: flex;
   height: 100vh;
 }
 /* Sidebar */
 .sidebar {
   background-color: var(--fc-dark);
-  width: 20vw;
-  height: 100vh;
+  width: 66px;
+  height: 100%;
   position: fixed;
   z-index: 3;
   transition: all ease-in-out 0.1s;
+}
+.sidebar-open {
+  width: 300px;
+}
+@media (max-width: 450px){
+  .sidebar-open {
+    width: 100%;
+  }
 }
 .sidebar-header {
   display: flex;
@@ -111,51 +129,49 @@ label {
   display: none;
 }
 
+/* home page*/
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 5em 0 6.5em;
+  width: 100%;
+}
+
 /* Result Page */
 .result-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 1em;
+  padding: 0 5em 0 6.5em;
+  text-align: center;
+  width: 100%;
 }
 
 .city-btn {
   text-decoration: none;
   margin: 1em;
-  font-size: var(--fs-h4);
+  font-size: var(--fs-h3);
   color: var(--fc-dark);
   width: 100%;
   text-align: center;
-  transition: ease-in-out 0.2s;
+  transition: background-color ease-in-out 0.2s;
   padding: 1em;
 }
 .city-btn:hover{
   background-color: rgb(249, 247, 248)
 }
 
-/* error */
-.error,
-.loading {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1em;
-}
 
-/* home  */
-.home-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
- }
 
-/* city */
+/* city page*/
 .city-page{
   display: grid;
   justify-content: center;
+  margin: 0 5em 0 7em;
+  width: 100%;
 }
 
 .city-title {
@@ -174,11 +190,27 @@ label {
   text-align: center;
   border: 1px solid var(--fc-grey);
   border-radius: 10px;
-  padding: 1em;
+  padding: 0.8em;
+  min-width: 105px;
+}
+.day-name, .daily-temp{
+  margin: 0;
 }
 
 .daily-icon {
-  max-height: 4em;
+  height: 70px;
+  width: 70px;
+}
+
+@media (max-width:800px){
+  .daily-container{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width:600px){
+  .daily-container{
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* hourly weather */
@@ -193,4 +225,16 @@ label {
   display: flex;
   justify-content: space-between;
   gap: 1em;
+}
+
+/* error, loading */
+.error,
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding:0 5em 0 7em;
+  width: 100%;
+  text-align: center;
 }
